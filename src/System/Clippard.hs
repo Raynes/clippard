@@ -1,5 +1,6 @@
 {-# LANGUAGE CPP #-}
-module System.Clippard where
+-- | A simple library fro copying to the clipboard.
+module System.Clippard (paste) where
 
 import System.Process
 import System.Info (os)
@@ -25,6 +26,7 @@ pasteWindows :: String -> IO ()
 pasteWindows = setClipboardString
 # endif
 
+-- | Paste text to the command-line. Automagically determines operating system.
 paste :: String -> IO ()
 paste =
   case os of
