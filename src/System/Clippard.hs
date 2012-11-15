@@ -1,8 +1,12 @@
+{-# LANGUAGE CPP #-}
 module System.Clippard where
 
 import System.Process
 import System.Info (os)
 import System.IO (hPutStr, hClose)
+# if mingw32_HOST_OS
+import System.Clipboard (setClipboardString) 
+#endif    
 
 pasteOSX :: String -> IO ()
 pasteOSX text = do
@@ -16,8 +20,16 @@ pasteLinux text = do
   hPutStr inp text
   hClose inp
 
+# ifdef mingw32_HOST_OS
+pasteWindows :: String -> IO ()
+pasteWindows = setClipboardString
+# endif
+
 paste :: String -> IO ()
 paste =
   case os of
     "darwin" -> pasteOSX
     "linux"  -> pasteLinux
+# ifdef mingw32_HOST_OS
+    _        -> pasteWindows
+# endif
