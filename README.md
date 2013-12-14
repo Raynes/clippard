@@ -1,5 +1,11 @@
 # Clippard
 
+[HClip](http://hackage.haskell.org/package/Hclip) is a library that was written
+after I wrote this library. While Clippard works fine (at least on Linux and
+OS X where I have tested it), HClip appears to have safer API and presumably was
+not authored in the space of a talk at the 3rd Clojure Conj conference. I'd
+suggest checking it out as well! ;)
+
 A simple library for pasting to the clipboard on various operating
 systems. Currently works for OS X and Linux, and may work on Windows.
 
